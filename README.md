@@ -18,9 +18,20 @@ kubectl delete -f kubernetes
 
 ## Notes
 
-- The cluster must have at least one node with at least **6.25 GB memory** (see the memory request of the container in [backend.yml](backend.yml)).
+- The cluster nodes must have at least **8 GB memory** or multiples thereof, depending on the number of replicas of the `sent2vec-server` pod. If the nodes have not enough memory, there will be a `FailedScheduling` failure, because of `Insufficient memory`. You can check whether the scheduling of a pod succeded with:
+
+    ~~~bash
+    kubectl describe pod <pod>
+    ~~~
+
 - It may take up to **10 minutes** to download the `sent2vec-server` image, if it is not yet present locally on the nodes. 
-- It takes around **3 minutes** for the `sent2vec-server` container to load the model. You can check the progress in the log output:
+- It takes around **3 minutes** for the `sent2vec-server` container to load the model. You can check the progress in the container's log output:
+
+    ~~~bash
+    kubectl logs -f --timestamps=true <pod>
+    ~~~
+
+    If there is only one replica of this pod, you can use:
 
     ~~~bash
     kubectl logs -f --timestamps=true deployment/sent2vec-engine
