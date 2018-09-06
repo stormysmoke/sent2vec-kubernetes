@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sent2vec-engine
+  labels:
+    app: sent2vec
+    tier: backend
+spec:
+  replicas: 1 
+  selector: 
+    matchLabels:
+      app: sent2vec
+      tier: backend
+  minReadySeconds: 180
+  template:
+    metadata:
+      labels:
+        app: sent2vec
+        tier: backend
+    spec:
+      containers:
+        - name: sent2vec-server
+          image: stormysmoke/sent2vec-server:0.0.1
+          env:
+            - name: RABBITMQ_URI
+              valueFrom:
+                secretKeyRef:
+                  name: sent2vec-secrets
+                  key: rabbitmq-uri
+            - name: S3_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: sent2vec-secrets
+                  key: s3-bucket-name
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: sent2vec-secrets
+                  key: aws-access-key-id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sent2vec-secrets
+                  key: aws-secret-access-key
+          resources:
+            requests:
+              memory: "6Gi"
+            limits:
+              memory: "6.25Gi"

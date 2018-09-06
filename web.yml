@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sent2vec-web-ui-service
+  labels:
+    app: sent2vec
+    tier: frontend
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: sent2vec
+    tier: frontend
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sent2vec-web-ui
+  labels:
+    app: sent2vec
+    tier: frontend
+spec:
+  replicas: 1 
+  selector: 
+    matchLabels:
+      app: sent2vec
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: sent2vec
+        tier: frontend
+    spec:
+      containers:
+      - name: sent2vec-client
+        image: stormysmoke/sent2vec-client:0.0.1
+        env:
+          - name: RABBITMQ_URI
+            valueFrom:
+              secretKeyRef:
+                name: sent2vec-secrets
+                key: rabbitmq-uri
+        ports:
+          - containerPort: 8080
