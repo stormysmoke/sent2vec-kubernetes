@@ -24,7 +24,7 @@ kubectl delete -f kubernetes
     kubectl describe pod <pod>
     ~~~
 
-    For example, an [`n1-standard-2`](https://cloud.google.com/compute/docs/machine-types#standard_machine_types) node on Google Cloud Platform with 7.5 GB memory is not sufficient to host a single [`sent2vec-server`](https://cloud.google.com/compute/docs/machine-types#highmem) pod and results in above error. A `n1-highmem-2` node with 13 GB memory, on the other hand, is sufficient to host a pod.
+    For example, an [`n1-standard-2`](https://cloud.google.com/compute/docs/machine-types#standard_machine_types) node on Google Cloud Platform with 7.5 GB memory is not sufficient to host a single `sent2vec-server` pod and results in above error. A [`n1-highmem-2`](https://cloud.google.com/compute/docs/machine-types#highmem) node with 13 GB memory, on the other hand, is sufficient to host a pod.
 
 - It may take up to **10 minutes** to download the `sent2vec-server` image, if it is not yet present locally on the nodes. 
 - It takes around **3 minutes** for the `sent2vec-server` container to load the model. You can check the progress in the container's log output:
