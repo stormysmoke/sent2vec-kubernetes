@@ -82,7 +82,7 @@ This returns the Base64 string `YW1xcDovL3VzZXI6cGFzc3dvcmRAaG9zdC92aG9zdA==`, w
 ...
 ~~~
 
-Do the same with the AWS access key ID and AWS secret access key of an AWS account, and the name of a S3 bucket in this AWS account. This S3 bucket is used as a database by the `sent2vec-server` container.
+Do the same with the AWS access key ID and AWS secret access key of an AWS account, and the name of a S3 bucket in this AWS account.
 
 ### Run
 
