@@ -7,13 +7,13 @@
 Creation:
 
 ~~~bash
-kubectl apply -f .
+kubectl apply -f kubernetes
 ~~~
 
 Deletion:
 
 ~~~bash
-kubectl delete -f .
+kubectl delete -f kubernetes
 ~~~
 
 ## Notes
@@ -41,7 +41,7 @@ See below how to specify the credentials for these services.
 
 ### Define a Kubernetes Secret
 
-For the deployment to work, you must first specify the credentials for the above services in an **additional Kubernetes file**. The file must have the following content (it can have any name, but `secrets.yml` makes sense):
+For the deployment to work, you must first specify the credentials for the above services in an **additional file** in the `kubernetes/` folder. The file must have the following content (it can have any name, but `kubernetes/secrets.yml` makes sense):
 
 ~~~yaml
 apiVersion: v1
@@ -89,7 +89,7 @@ Do the same with the AWS access key ID and AWS secret access key of an AWS accou
 After creating the secrets file, just run the command indicated above to deploy and start the entire application:
 
 ~~~bash
-kubectl apply -f .
+kubectl apply -f kubernetes
 ~~~
 
 ### Important
