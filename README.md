@@ -41,7 +41,7 @@ See below how to specify the credentials for these services.
 
 ### Define a Kubernetes Secret
 
-For the deployment to work, you must first specify the credentials for the above services in an **additional file** in the `kubernetes/` folder. The file must have the following content (it can have any name, but `kubernetes/secrets.yml` makes sense):
+For the deployment to work, you must first specify the credentials for the above services in an **additional YAML file** in the `kubernetes` folder. The file must have the following content (it can have any name, but `kubernetes/secrets.yml` makes sense):
 
 ~~~yaml
 apiVersion: v1
