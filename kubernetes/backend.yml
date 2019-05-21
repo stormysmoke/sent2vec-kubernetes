@@ -6,12 +6,11 @@ metadata:
     app: sent2vec
     tier: backend
 spec:
-  replicas: 2 
+  replicas: 3
   selector: 
     matchLabels:
       app: sent2vec
       tier: backend
-  minReadySeconds: 180
   template:
     metadata:
       labels:
